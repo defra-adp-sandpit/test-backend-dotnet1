@@ -1,0 +1,61 @@
+parameters:
+  - name: deployFromFeature
+    displayName: "Deploy from Feature Branch"
+    type: boolean
+    default: false
+  - name: deployConfigOnly
+    displayName: "Deploy App Config & Secrets Only"
+    type: boolean
+    default: false     
+pr:
+  branches:
+    include:
+      - main
+      - master
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+  drafts: false
+
+trigger:
+  batch: true
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - test-output/*
+      - bin/*
+      - obj/*
+
+resources:
+  repositories:
+    - repository: DEFRA-ADPPipelineCommon
+      name: DEFRA/adp-pipeline-common
+      endpoint: DEFRA
+      type: github
+      ref: refs/heads/main
+
+extends:
+  template: /pipelines/common-app-build.yaml@DEFRA-ADPPipelineCommon
+  parameters:
+    programmeName: ""
+    teamName: "fcp-jkr-test"
+    serviceName: "test-backend-dotnet1"
+    deployFromFeature: 
+    appBuildConfig:
+      appFrameworkType: "dotnet"
+      frameworkVersion: "8.x"    
+      projectPath: "./src/Test.Backend.Dotnet1.Api/Test.Backend.Dotnet1.Api.csproj"
+      testProjectPath: "**/*.Tests.csproj" 
+      manifestPath: "./src/obj/Test.Backend.Dotnet1.Api/project.assets.json;./src/obj/Test.Backend.Dotnet1.Core/project.assets.json"
+      imageRepoName: "test-backend-dotnet1"
+    appTestConfig:
+      testFilePath: ""
+    appDeployConfig:
+      filepath: "./appConfig"
+      filetype: "yaml" 
+      # variableGroups: 
+      #   - test-backend-dotnet1-<environment> 

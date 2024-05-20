@@ -1,0 +1,32 @@
+@Test.Backend.Dotnet1.Api_HostAddress = https://localhost:7118
+
+GET {{Test.Backend.Dotnet1.Api_HostAddress}}/api/demo
+
+###
+
+POST {{Test.Backend.Dotnet1.Api_HostAddress}}/api/demo
+Content-Type: application/json
+
+{
+    "name":"item3"
+}
+
+###
+
+PATCH {{Test.Backend.Dotnet1.Api_HostAddress}}/api/demo
+Content-Type: application/json
+
+{
+    "id":"1",
+    "name":"item3"
+}
+
+###
+
+GET {{Test.Backend.Dotnet1.Api_HostAddress}}/api/demo/1
+
+###
+
+DELETE {{Test.Backend.Dotnet1.Api_HostAddress}}/api/demo/3
+
+###

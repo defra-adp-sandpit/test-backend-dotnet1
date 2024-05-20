@@ -1,0 +1,36 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: test-backend-dotnet1
+  description: test-backend-dotnet1
+  annotations:
+    github.com/project-slug: defra-adp-sandpit/test-backend-dotnet1
+    dev.azure.com/project: defra-ffc
+    dev.azure.com/build-definition: test-backend-dotnet1
+    sonarqube.org/project-key: test-backend-dotnet1
+    grafana/dashboard-selector: "folderTitle == 'Managed Prometheus'"
+    backstage.io/kubernetes-id: test-backend-dotnet1
+  links:
+    - url: https://github.com/defra-adp-sandpit/test-backend-dotnet1
+      title: GitHub Repository
+      icon: github
+    - url: https://dev.azure.com/defragovuk/defra-ffc/
+      title: Azure DevOps Project
+      icon: project
+    - url: https://sonarcloud.io/project/overview?id=test-backend-dotnet1
+      title: SonarCloud Analysis
+      icon: check
+    - url: https://snyk.io/test/github/DEFRA/test-backend-dotnet1
+      title: Snyk Analysis
+      icon: policy
+    - url: https://portal.azure.com/defradev.onmicrosoft.com
+      title: Azure Portal - Defra Dev
+      icon: cloud
+    - url: https://portal.azure.com/Defra.onmicrosoft.com
+      title: Azure Portal - Defra
+      icon: cloud
+spec:
+  type: backend
+  lifecycle: alpha
+  owner: "group:default/fcp-jkr-test"
+  system: system:default/adp-shared-services

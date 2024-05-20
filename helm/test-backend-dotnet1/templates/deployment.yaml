@@ -1,0 +1,11 @@
+{{- include "adp-helm-library.deployment" (list . "test-backend-dotnet1.deployment") -}}
+{{- define "test-backend-dotnet1.deployment" -}}
+spec:
+  template:
+    spec:
+      containers:
+      - {{ include "adp-helm-library.container" (list . "test-backend-dotnet1.container") }}
+      volumes:
+      - name: {{ .Values.volumeMounts.name }}
+        emptyDir: {}
+{{- end -}}

@@ -1,0 +1,12 @@
+# This override file should be used when running this service in isolation
+# to provide required sibling services for local testing
+
+services:
+  test-backend-dotnet1:
+    build:
+      target: development
+    ports:
+      - "3007:3007"
+    volumes:
+      - ./src/Test.Backend.Dotnet1.Api:/home/dotnet/src/Test.Backend.Dotnet1.Api
+      - ./src/Test.Backend.Dotnet1.Core:/home/dotnet/src/Test.Backend.Dotnet1.Core
